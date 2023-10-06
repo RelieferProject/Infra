@@ -12,21 +12,22 @@ services:
     image: postgres:16rc1
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=reliefer
+      - POSTGRES_USER=backenduser
+      - POSTGRES_PASSWORD=axyz123456789
     ports:
       - '5432:5432'
     volumes: 
       - db:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
-  # backend:
-  #   depends_on:
-  #     - db
-  #   build: ../backend
-  #   ports:
-  #     - '8080:8080'
-  #   stdin_open: true
-  #   tty: true
+  backend:
+    depends_on:
+      - db
+    build: ../backend
+    ports:
+      - '8080:8080'
+    stdin_open: true
+    tty: true
   # nginx:
   #   image: nginx:latest
   #   container_name: nginx
