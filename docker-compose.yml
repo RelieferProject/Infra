@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  frontend:
-    #
-    build: ../FRONTEND
-    image: vite-frontend
-    ports:
-      - 3000:80
+  # frontend:
+  #   #
+  #   build: ../FRONTEND
+  #   image: vite-frontend
+  #   ports:
+  #     - 3000:80
 
   db:
-    image: postgres:lastest
+    image: postgres:16rc1
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -19,24 +19,24 @@ services:
     volumes: 
       - db:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
-  backend:
-    depends_on:
-      - db
-    build: ../BACKEND
-    ports:
-      - '8080:8080'
-    stdin_open: true
-    tty: true
-  nginx:
-    image: nginx:latest
-    container_name: nginx
-    ports:
-      - '80:80'
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - frontend
-      - backend
+  # backend:
+  #   depends_on:
+  #     - db
+  #   build: ../backend
+  #   ports:
+  #     - '8080:8080'
+  #   stdin_open: true
+  #   tty: true
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: nginx
+  #   ports:
+  #     - '80:80'
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf
+  #   depends_on:
+  #     # - frontend
+  #     - backend
 
 volumes:
   db:
