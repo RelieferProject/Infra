@@ -11,10 +11,8 @@ services:
   db:
     image: postgres:16rc1
     restart: always
-    environment:
-      - POSTGRES_DB=reliefer
-      - POSTGRES_USER=backenduser
-      - POSTGRES_PASSWORD=axyz123456789
+    env_file:
+      - .env
     ports:
       - '5432:5432'
     volumes: 
