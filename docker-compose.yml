@@ -12,12 +12,13 @@ services:
     image: nginx
     restart: always
     volumes:
-      - ./nginx/api:/etc/nginx/sites-enabled/api
-      - ./nginx/api:/etc/nginx/sites-available/api
+      # - ./nginx/api:/etc/nginx/sites-enabled/api
+      # - ./nginx/api:/etc/nginx/sites-available/api
       # - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/proxy:/etc/nginx/conf.d
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - db
       - backend
