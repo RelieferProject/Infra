@@ -12,8 +12,9 @@ services:
     image: nginx
     restart: always
     volumes:
-      - ./nginx/api:/etc/nginx/sites-enabled/api
-      - ./nginx/api:/etc/nginx/sites-available/api
+      # - ./nginx/api:/etc/nginx/sites-enabled/api
+      # - ./nginx/api:/etc/nginx/sites-available/api
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
     depends_on:
