@@ -22,17 +22,20 @@ services:
     depends_on:
       - db
       - backend
-
+  
   db:
-    image: "postgres:latest"
+    restart: always
+    image: postgres:latest
+    container_name: db
+    volumes:
+      - db:/var/lib/postgresql/data/:rw
     ports:
       - "5432:5432"
-    volumes:
-      - db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=reliefer
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/
+
   backend:
     depends_on:
       - db
@@ -52,6 +55,6 @@ services:
   #     # - frontend
   #     - backend
 
-volumes:
-  db:
+# volumes:
+#   db:
     
