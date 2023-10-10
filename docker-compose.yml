@@ -24,15 +24,14 @@ services:
       - backend
   
   db:
-    restart: always
     image: postgres:latest
     container_name: db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      PGDATA: /tmp
+      PGDATA: /var/lib/postgresql/data/
     volumes:
-      - .cloud/postgres/data:/tmp
+      - ./cloud:/var/lib/postgresql/data/:rw
     ports:
       - "5432:5432"
 
