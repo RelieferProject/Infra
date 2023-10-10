@@ -27,14 +27,14 @@ services:
     restart: always
     image: postgres:latest
     container_name: db
-    volumes:
-      - db:/var/lib/postgresql/data/:rw
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      PGDATA: /var/lib/postgresql/data/
+      PGDATA: /tmp
+    volumes:
+      - .cloud/postgres/data:/tmp
+    ports:
+      - "5432:5432"
 
   backend:
     depends_on:
@@ -45,18 +45,6 @@ services:
     stdin_open: true
     tty: true
 
-  minio:
-    image: minio/minio
-    container_name: minio
-    volumes:
-      - ./data:/data
-      - ./config:/root/.minio
-    ports:
-      - "9000:9000"
-    environment:
-      MINIO_ROOT_USER: frong
-      MINIO_ROOT_PASSWORD: frong
-    command: server /data
   # nginx:
   #   image: nginx:latest
   #   container_name: nginx
