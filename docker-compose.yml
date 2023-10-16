@@ -1,12 +1,19 @@
 version: '3.8'
 
 services:
-  # frontend:
-  #   #
-  #   build: ../FRONTEND
-  #   image: vite-frontend
-  #   ports:
-  #     - 3000:80
+  frontendAdmin:
+    #
+    build: ../frontend
+    image: frontend-admin
+    ports:
+      - 3000:80
+
+  frontendUser:
+    #
+    build: ../frontend-user
+    image: frontend-user
+    ports:
+      - 3002:80
 
   web:
     image: nginx
