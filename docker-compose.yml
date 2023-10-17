@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
 
   backend:
-    volumes_from:
+    depends_on:
       - db
     build: ../backend
     ports:
@@ -54,7 +54,7 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes_from:
+    depends_on:
       - db
       - backend
       - frontendadmin
