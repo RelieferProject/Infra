@@ -1,18 +1,18 @@
 version: '3.8'
 
 services:
-  db:
-    image: postgres:latest
-    container_name: db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      PGDATA: /var/lib/postgresql/data/
-    volumes:
-      - ./cloud:/var/lib/postgresql/data/:rw
-    ports:
-      - "5432:5432"
-    restart: unless-stopped
+  # db:
+  #   image: postgres:latest
+  #   container_name: db
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     PGDATA: /var/lib/postgresql/data/
+  #   volumes:
+  #     - ./cloud:/var/lib/postgresql/data/:rw
+  #   ports:
+  #     - "5432:5432"
+  #   restart: unless-stopped
 
   frontendadmin:
     #
@@ -31,8 +31,8 @@ services:
     restart: unless-stopped
 
   backend:
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     build: ../backend
     ports:
       - '8080:8080'
@@ -55,7 +55,7 @@ services:
       - 80:80
       - 443:443
     depends_on:
-      - db
+      # - db
       - backend
       - frontendadmin
       - frontenduser
@@ -71,6 +71,6 @@ services:
   #     # - frontend
   #     - backend
 
-volumes:
-  db:
+# volumes:
+#   db:
     
