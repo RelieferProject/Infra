@@ -16,23 +16,26 @@ services:
 
   frontendadmin:
     #
+    container_name: frontendadmin
     build: ../frontend
     image: frontend-admin
     ports:
-      - 3000:80
+      - 70:80
     restart: unless-stopped
 
   frontenduser:
     #
+    container_name: frontenduser
     build: ../frontend-user
     image: frontend-user
     ports:
-      - 3002:80
+      - 90:80
     restart: unless-stopped
 
   backend:
     # depends_on:
     #   - db
+    container_name: backend
     build: ../backend
     ports:
       - '8080:8080'
