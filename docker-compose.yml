@@ -20,7 +20,7 @@ services:
     build: ../frontend
     image: frontend-admin
     ports:
-      - 70:80
+      - 3000:80
     restart: unless-stopped
 
   frontenduser:
@@ -29,7 +29,7 @@ services:
     build: ../frontend-user
     image: frontend-user
     ports:
-      - 90:80
+      - 3002:80
     restart: unless-stopped
 
   backend:
