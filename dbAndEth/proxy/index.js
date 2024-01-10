@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', createProxyMiddleware({ 
-  target: 'http://chain.reliefer.online:8545', // target host
+  target: 'http://157.245.145.145:8545', // target host
   changeOrigin: true, // needed for virtual hosted sites
   ws: true, // proxy websockets
 }));
