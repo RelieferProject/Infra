@@ -13,6 +13,8 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
+    networks:
+      - data-network
   # run service proxy index.js port 3000
   proxy:
     build: ./proxy
@@ -22,6 +24,8 @@ services:
     restart: unless-stopped
     depends_on:
       - db
+    networks:
+      - data-network
   web:
     image: nginx
     restart: unless-stopped
@@ -34,7 +38,11 @@ services:
       # - db
       - proxy
       - db
+    networks:
+      - data-network
 
 volumes:
   db:
     
+networks:
+  data-network:
