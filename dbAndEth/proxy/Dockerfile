@@ -1,8 +1,8 @@
 FROM node:12-buster-slim
 
 WORKDIR /usr/src/app
+COPY package*.json ./
 COPY index.js ./
-# install express -g
-RUN npm install express -g
+RUN npm install
 # run index.js
 CMD [ "node", "index.js" ]
