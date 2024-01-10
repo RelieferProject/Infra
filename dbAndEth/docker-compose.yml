@@ -27,6 +27,7 @@ services:
     networks:
       - data-network
   web:
+    container_name: web
     image: nginx
     restart: unless-stopped
     volumes:
